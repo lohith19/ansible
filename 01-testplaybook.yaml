@@ -1,4 +1,10 @@
 - name: Install and run nginx
   hosts: web
   become: yes
-  
+  tasks:
+  -name: Install nginx
+    name: nginx
+    state: present
+  -name: run nginx
+    name: nginx
+    state: started
