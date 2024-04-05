@@ -1,12 +1,13 @@
-- name: Installing packages with loops
+- name: Installing and uninstalling packages with loops
   hosts: localhost
   become: yes
   tasks: 
   - name: install
     ansible.builtin.package:
-      name: "{{item}}"
-      state: present
+      name: "{{item.name}}"
+      state: "{{item.state}}"
     loop:
-    - git
-    - mysql
-    - postfix
+    - {name: 'git', state: 'present'}
+    - {name: 'mysql', state: 'absent'}
+    - {name: 'nginx', state: 'present'}
+    - {name: 'postfix', state: 'absent'}
